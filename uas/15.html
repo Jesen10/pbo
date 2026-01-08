@@ -2,12 +2,12 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Login App</title>
+<title>Futuristic Login</title>
 
 <style>
     * {
         box-sizing: border-box;
-        font-family: "Segoe UI", Arial, sans-serif;
+        font-family: "Segoe UI", sans-serif;
     }
 
     body {
@@ -16,26 +16,60 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        background: radial-gradient(circle at top, #0d47a1, #020024);
+        overflow: hidden;
+    }
+
+    /* Background glow */
+    body::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(33,150,243,0.4), transparent);
+        filter: blur(120px);
     }
 
     .card {
-        background: #ffffff;
+        position: relative;
         width: 380px;
         padding: 35px;
-        border-radius: 18px;
-        box-shadow: 0 20px 45px rgba(0, 90, 180, 0.25);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 0 40px rgba(33,150,243,0.4);
         text-align: center;
+        color: white;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 15px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #42a5f5, #1e88e5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+        box-shadow: 0 0 25px #42a5f5;
     }
 
     h2 {
-        margin-bottom: 10px;
-        color: #0d47a1;
+        margin-bottom: 5px;
     }
 
     .subtitle {
         font-size: 14px;
-        color: #607d8b;
+        opacity: 0.8;
         margin-bottom: 25px;
     }
 
@@ -43,60 +77,56 @@
         width: 100%;
         padding: 14px;
         margin: 10px 0;
-        border-radius: 10px;
-        border: 1px solid #bbdefb;
-        font-size: 14px;
+        border-radius: 12px;
+        border: none;
         outline: none;
-        transition: 0.3s;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        font-size: 14px;
     }
 
-    input:focus {
-        border-color: #2196f3;
-        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+    input::placeholder {
+        color: rgba(255,255,255,0.7);
     }
 
     button {
         width: 100%;
         padding: 14px;
+        border-radius: 12px;
         border: none;
-        border-radius: 10px;
-        font-size: 15px;
         cursor: pointer;
+        font-size: 15px;
         margin-top: 12px;
         transition: 0.3s;
     }
 
     .btn-login {
-        background: linear-gradient(90deg, #1e88e5, #42a5f5);
+        background: linear-gradient(90deg, #2196f3, #64b5f6);
         color: white;
         font-weight: bold;
+        box-shadow: 0 0 20px rgba(33,150,243,0.7);
     }
 
     .btn-login:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
+        transform: scale(1.03);
     }
 
     .btn-cancel {
-        background: #e3f2fd;
-        color: #1565c0;
-    }
-
-    .btn-cancel:hover {
-        background: #bbdefb;
-    }
-
-    .btn-logout {
-        background: #1565c0;
-        color: white;
-        margin-top: 20px;
+        background: transparent;
+        color: #bbdefb;
     }
 
     .success {
-        color: #1565c0;
+        font-size: 18px;
         font-weight: bold;
-        margin-bottom: 12px;
-        font-size: 16px;
+        margin-bottom: 10px;
+        color: #90caf9;
+    }
+
+    .btn-logout {
+        background: linear-gradient(90deg, #1565c0, #42a5f5);
+        color: white;
+        margin-top: 20px;
     }
 </style>
 </head>
@@ -114,6 +144,7 @@ class LoginApp {
 
     renderLogin() {
         this.container.innerHTML = `
+            <div class="logo">Z</div>
             <h2>Welcome Back</h2>
             <div class="subtitle">Silakan login untuk melanjutkan</div>
             <input type="text" id="username" placeholder="Username">
@@ -124,13 +155,13 @@ class LoginApp {
     }
 
     login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-        if (username === 'jesen' && password === 'jesen5') {
+        if (username === "jesen" && password === "jesen5") {
             this.renderSuccess(username);
         } else {
-            alert('Username atau password salah!');
+            alert("Username atau password salah!");
         }
     }
 
@@ -147,12 +178,12 @@ class LoginApp {
     }
 
     cancel() {
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
     }
 }
 
-const app = new LoginApp('app');
+const app = new LoginApp("app");
 </script>
 
 </body>
