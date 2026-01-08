@@ -7,7 +7,7 @@
 <style>
     * {
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
+        font-family: "Segoe UI", Arial, sans-serif;
     }
 
     body {
@@ -16,60 +16,87 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #ff9a9e, #a18cd1);
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     }
 
     .card {
-        background: white;
-        width: 360px;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        background: #ffffff;
+        width: 380px;
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 20px 45px rgba(0, 90, 180, 0.25);
         text-align: center;
     }
 
     h2 {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        color: #0d47a1;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #607d8b;
+        margin-bottom: 25px;
     }
 
     input {
         width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 8px;
-        border: 1px solid #ccc;
+        padding: 14px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: 1px solid #bbdefb;
         font-size: 14px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: #2196f3;
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
     }
 
     button {
         width: 100%;
-        padding: 12px;
+        padding: 14px;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         font-size: 15px;
         cursor: pointer;
-        margin-top: 10px;
+        margin-top: 12px;
+        transition: 0.3s;
     }
 
     .btn-login {
-        background: linear-gradient(90deg, #ff758c, #6a85f1);
+        background: linear-gradient(90deg, #1e88e5, #42a5f5);
         color: white;
+        font-weight: bold;
+    }
+
+    .btn-login:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
     }
 
     .btn-cancel {
-        background: #f2f2f2;
+        background: #e3f2fd;
+        color: #1565c0;
+    }
+
+    .btn-cancel:hover {
+        background: #bbdefb;
     }
 
     .btn-logout {
-        background: #e53935;
+        background: #1565c0;
         color: white;
         margin-top: 20px;
     }
 
     .success {
-        color: #2e7d32;
+        color: #1565c0;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        font-size: 16px;
     }
 </style>
 </head>
@@ -87,7 +114,8 @@ class LoginApp {
 
     renderLogin() {
         this.container.innerHTML = `
-            <h2>Login</h2>
+            <h2>Welcome Back</h2>
+            <div class="subtitle">Silakan login untuk melanjutkan</div>
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
             <button class="btn-login" onclick="app.login()">Login</button>
@@ -108,8 +136,8 @@ class LoginApp {
 
     renderSuccess(username) {
         this.container.innerHTML = `
-            <div class="success">Berhasil login ✅</div>
-            <p>Hallo <b>${username}</b>, selamat datang di sistem</p>
+            <div class="success">Login Berhasil 🎉</div>
+            <p>Halo <b>${username}</b>, selamat datang di sistem</p>
             <button class="btn-logout" onclick="app.logout()">Logout</button>
         `;
     }
