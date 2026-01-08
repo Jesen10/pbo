@@ -79,4 +79,112 @@
         margin: 10px 0;
         border-radius: 12px;
         border: none;
-        o
+        outline: none;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        font-size: 14px;
+    }
+
+    input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        margin-top: 12px;
+        transition: 0.3s;
+    }
+
+    .btn-login {
+        background: linear-gradient(90deg, #2196f3, #64b5f6);
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 0 20px rgba(33,150,243,0.7);
+    }
+
+    .btn-login:hover {
+        transform: scale(1.03);
+    }
+
+    .btn-cancel {
+        background: transparent;
+        color: #bbdefb;
+    }
+
+    .success {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #90caf9;
+    }
+
+    .btn-logout {
+        background: linear-gradient(90deg, #1565c0, #42a5f5);
+        color: white;
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="app" class="card"></div>
+
+<script>
+class LoginApp {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        this.renderLogin();
+    }
+
+    renderLogin() {
+        this.container.innerHTML = `
+            <div class="logo">J</div>
+            <h2>LOGIN!!!</h2>
+            <div class="subtitle">Masukkan akun untuk melanjutkan</div>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button class="btn-login" onclick="app.login()">Login</button>
+            <button class="btn-cancel" onclick="app.cancel()">Cancel</button>
+        `;
+    }
+
+    login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === "jesen" && password === "jesen5") {
+            this.renderSuccess(username);
+        } else {
+            alert("Username atau password salah!");
+        }
+    }
+
+    renderSuccess(username) {
+        this.container.innerHTML = `
+            <div class="success">Login Berhasil 🎉</div>
+            <p>Halo <b>${username}</b>, selamat datang di sistem</p>
+            <button class="btn-logout" onclick="app.logout()">Logout</button>
+        `;
+    }
+
+    logout() {
+        this.renderLogin();
+    }
+
+    cancel() {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+    }
+}
+
+const app = new LoginApp("app");
+</script>
+
+</body>
+</html>
